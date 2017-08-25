@@ -45,11 +45,15 @@
   <ItemGroup>
     <Compile Include="IServiceControllerExeWrapper.cs" />
     <Compile Include="IProcessRunner.cs" />
+    <Compile Include="LinqBridge.cs" />
     <Compile Include="ProcessRunner.cs" />
     <Compile Include="ProcessRunnerException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceControllerExeWrapper.cs" />
     <Compile Include="ServiceControllerWrapperException.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

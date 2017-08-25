@@ -146,7 +146,6 @@ namespace WinProcessExtensions
         }
         public int GetSimilarProcessesCount(string pname = null)
         {
-
             var currentProcess = Process.GetCurrentProcess();
             var name = pname ?? currentProcess.ProcessName;
             var sessionId = currentProcess.SessionId;
