@@ -1,32 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System;
 using System.Text;
-using System.Threading.Tasks;
 using CSharpFunctionalExtensions;
 
 namespace WinProcessExtensions
 {
-    public interface IServiceControllerExeWrapper
-    {
-        Result<ServiceControllerExeWrapper.ExpectedResults> ReInstallService(string serviceDisplayName, string serviceAssemblyPath);
-    }
-    public interface IProcessRunner
-    {
-        int GetSimilarProcessesCount(string pname = null);
-        int LaunchProcessWithoutShellExecute(string fileName, string arguments);
-        int LaunchProcessWithoutShellExecuteAndWaitExitCode(string fileName, string arguments, Fiction<string> logOutput, Fiction<string> logError);
-
-        int LaunchProcessWithoutShellExecuteAndWaitExitCode(string fileName, string arguments,
-            Fiction<string> logOutput, Fiction<string> logError, int timeoutMilliseconds);
-        int LaunchProcessWithoutShellExecuteAndWaitExitCode(string fileName, string arguments, bool getStdOutput, bool getStdError, Fiction<string> logOutput, Fiction<string> logError);
-
-        int RunDetachedProcess(string appname);
-        int RunDetachedProcess(string appname, string arguments);
-        int RunProcess(string fileName, string arguments);
-        string StartProcessAndWaitForOutput(string processFileName, string processArguments);
-    }
-
     public class ServiceControllerExeWrapper : IServiceControllerExeWrapper
     {
         //TODO:Some methods can be made public 
