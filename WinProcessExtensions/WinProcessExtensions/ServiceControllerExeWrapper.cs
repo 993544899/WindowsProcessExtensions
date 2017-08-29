@@ -16,12 +16,12 @@ namespace WinProcessExtensions
             _processRunner = processRunner;
         }
 
-        public Result<ExpectedResults> ReInstallService(string serviceDisplayName, string serviceAssemblyPath)
+        public Result<ExpectedResults> ReInstallService(string serviceName, string serviceAssemblyPath)
         {
-            return UninstallServiceIfExists(serviceDisplayName)
-                .OnSuccess(uninstallResult => InstallService(serviceDisplayName, serviceAssemblyPath))
-                .OnSuccess(installResult => StartService(serviceDisplayName))
-                .OnSuccess(startResult => SetDefaultRecoveryOptions(serviceDisplayName));
+            return UninstallServiceIfExists(serviceName)
+                .OnSuccess(uninstallResult => InstallService(serviceName, serviceAssemblyPath))
+                .OnSuccess(installResult => StartService(serviceName))
+                .OnSuccess(startResult => SetDefaultRecoveryOptions(serviceName));
         }
 
         public Result<ExpectedResults> SetDefaultRecoveryOptions(string serviceDisplayName)
@@ -36,9 +36,9 @@ namespace WinProcessExtensions
                 });
         }
 
-        public Result<ExpectedResults> StartService(string serviceDisplayName)
+        public Result<ExpectedResults> StartService(string serviceName)
         {
-            return ExecuteScAndGetResult($"start \"{serviceDisplayName}\"")
+            return ExecuteScAndGetResult($"start \"{serviceName}\"")
                 .OnSuccess(startResult =>
                 {
                     switch (startResult)
@@ -50,7 +50,7 @@ namespace WinProcessExtensions
                             return Result.Fail<ExpectedResults>(startResult.ToString());
                     }
                     throw new ServiceControllerWrapperException(
-                        $"Couldn't start service:{serviceDisplayName}. Result:{startResult}");
+                        $"Couldn't start service:{serviceName}. Result:{startResult}");
                 });
         }
 
@@ -73,22 +73,22 @@ namespace WinProcessExtensions
                 });
         }
 
-        public Result<ExpectedResults> InstallService(string seviceDisplayName, string serviceAssemblyPath)
+        public Result<ExpectedResults> InstallService(string serviceName, string serviceAssemblyPath)
         {
-            return ExecuteScAndGetResult($"create {seviceDisplayName} binPath= \"{serviceAssemblyPath}\" start= auto displayName= \"{seviceDisplayName}\"")
+            return ExecuteScAndGetResult($"create {serviceName} binPath= \"{serviceAssemblyPath}\" start= auto displayName= \"{serviceName}\"")
                 .OnSuccess(installResult =>
                 {
                     if (installResult != ExpectedResults.Success)
                     {
                         throw new ServiceControllerWrapperException(
-                            $"Couldn't create service:{seviceDisplayName}. Result:{installResult}");
+                            $"Couldn't create service:{serviceName}. Result:{installResult}");
                     }
                 }); ;
         }
 
-        public Result<ExpectedResults> DeleteService(string seviceDisplayName)
+        public Result<ExpectedResults> DeleteService(string serviceName)
         {
-            var args = $"delete {seviceDisplayName}";
+            var args = $"delete {serviceName}";
             return ExecuteScAndGetResult(args)
                 .OnSuccess(result =>
                 {
@@ -104,9 +104,9 @@ namespace WinProcessExtensions
                 });
         }
 
-        public Result<ExpectedResults> UninstallServiceIfExists(string seviceDisplayName)
+        public Result<ExpectedResults> UninstallServiceIfExists(string serviceName)
         {
-            var args = $"stop {seviceDisplayName}";
+            var args = $"stop {serviceName}";
             return ExecuteScAndGetResult(args)
                 .OnSuccess(result =>
                 {
@@ -114,7 +114,7 @@ namespace WinProcessExtensions
                     {
                         case ExpectedResults.Success:
                         case ExpectedResults.NotStarted:
-                            return DeleteService(seviceDisplayName);
+                            return DeleteService(serviceName);
                         case ExpectedResults.ServiceDoesNotExist:
                             return Result.Ok(result);
                         default:

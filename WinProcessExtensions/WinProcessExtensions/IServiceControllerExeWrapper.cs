@@ -5,6 +5,6 @@ namespace WinProcessExtensions
 {
     public interface IServiceControllerExeWrapper
     {
-        Result<ServiceControllerExeWrapper.ExpectedResults> ReInstallService(string serviceDisplayName, string serviceAssemblyPath);
+        Result<ServiceControllerExeWrapper.ExpectedResults> ReInstallService(string serviceName, string serviceAssemblyPath);
     }
 }
