@@ -1,13 +1,12 @@
 using System;
 using System.Text;
-using CSharpFunctionalExtensions;
+using CSharpFunctionalExtensions3_0;
 
 namespace WinProcessExtensions
 {
+    //TODO:Documment this class 
     public class ServiceControllerExeWrapper : IServiceControllerExeWrapper
     {
-        //TODO:Some methods can be made public 
-
         const string ServiceControllerName = "sc.exe";
 
         readonly IProcessRunner _processRunner;
@@ -25,7 +24,7 @@ namespace WinProcessExtensions
                 .OnSuccess(startResult => SetDefaultRecoveryOptions(serviceDisplayName));
         }
 
-        Result<ExpectedResults> SetDefaultRecoveryOptions(string serviceDisplayName)
+        public Result<ExpectedResults> SetDefaultRecoveryOptions(string serviceDisplayName)
         {
             //TODO:Add capability to customize recovery options
             return ExecuteScAndGetResult($"failure {serviceDisplayName} reset=86400 actions= restart/60000/restart/60000//")
@@ -37,7 +36,7 @@ namespace WinProcessExtensions
                 });
         }
 
-        Result<ExpectedResults> StartService(string serviceDisplayName)
+        public Result<ExpectedResults> StartService(string serviceDisplayName)
         {
             return ExecuteScAndGetResult($"start \"{serviceDisplayName}\"")
                 .OnSuccess(startResult =>
@@ -55,7 +54,7 @@ namespace WinProcessExtensions
                 });
         }
 
-        Result<ExpectedResults> StopServiceIfExistsAndRunning(string serviceDisplayName)
+        public Result<ExpectedResults> StopServiceIfExistsAndRunning(string serviceDisplayName)
         {
             var args = $"stop {serviceDisplayName}";
             return ExecuteScAndGetResult(args)
@@ -74,7 +73,7 @@ namespace WinProcessExtensions
                 });
         }
 
-        Result<ExpectedResults> InstallService(string seviceDisplayName, string serviceAssemblyPath)
+        public Result<ExpectedResults> InstallService(string seviceDisplayName, string serviceAssemblyPath)
         {
             return ExecuteScAndGetResult($"create {seviceDisplayName} binPath= \"{serviceAssemblyPath}\" start= auto displayName= \"{seviceDisplayName}\"")
                 .OnSuccess(installResult =>
@@ -87,7 +86,7 @@ namespace WinProcessExtensions
                 }); ;
         }
 
-        Result<ExpectedResults> DeleteService(string seviceDisplayName)
+        public Result<ExpectedResults> DeleteService(string seviceDisplayName)
         {
             var args = $"delete {seviceDisplayName}";
             return ExecuteScAndGetResult(args)
@@ -105,7 +104,7 @@ namespace WinProcessExtensions
                 });
         }
 
-        Result<ExpectedResults> UninstallServiceIfExists(string seviceDisplayName)
+        public Result<ExpectedResults> UninstallServiceIfExists(string seviceDisplayName)
         {
             var args = $"stop {seviceDisplayName}";
             return ExecuteScAndGetResult(args)

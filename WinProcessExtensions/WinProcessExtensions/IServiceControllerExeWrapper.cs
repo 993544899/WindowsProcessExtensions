@@ -1,4 +1,4 @@
-﻿using CSharpFunctionalExtensions;
+﻿using CSharpFunctionalExtensions3_0;
 using System.Collections.Generic;
 
 namespace WinProcessExtensions
