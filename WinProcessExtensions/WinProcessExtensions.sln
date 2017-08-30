@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinProcessExtensions", "WinProcessExtensions\WinProcessExtensions.csproj", "{7E590180-F135-41BC-86C2-97C7F73D3B40}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinProcessExtensions3_0", "WinProcessExtensions\WinProcessExtensions3_0.csproj", "{7E590180-F135-41BC-86C2-97C7F73D3B40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinProcessExtensions45", "WinProcessExtensions45\WinProcessExtensions45.csproj", "{03647C83-4C84-4BD0-9A92-5837D78D8E54}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinProcessExtensions", "WinProcessExtensions45\WinProcessExtensions.csproj", "{03647C83-4C84-4BD0-9A92-5837D78D8E54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

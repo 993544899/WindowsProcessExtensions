@@ -7,8 +7,8 @@
     <ProjectGuid>{7E590180-F135-41BC-86C2-97C7F73D3B40}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WinProcessExtensions</RootNamespace>
-    <AssemblyName>WinProcessExtensions</AssemblyName>
+    <RootNamespace>WinProcessExtensions3_0</RootNamespace>
+    <AssemblyName>WinProcessExtensions3_0</AssemblyName>
     <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{03647C83-4C84-4BD0-9A92-5837D78D8E54}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>WinProcessExtensions45</RootNamespace>
-    <AssemblyName>WinProcessExtensions45</AssemblyName>
+    <RootNamespace>WinProcessExtensions</RootNamespace>
+    <AssemblyName>WinProcessExtensions</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

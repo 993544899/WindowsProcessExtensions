@@ -15,6 +15,12 @@ namespace WinProcessExtensions
         {
             _processRunner = processRunner;
         }
+        public bool CheckServiceExists(string serviceName)
+        {
+            var args = $"query {serviceName}";
+            var result = ExecuteScAndGetResult(args);
+            return result.IsSuccess && result.Value == ExpectedResults.Success;
+        }
 
         public Result<ExpectedResults> ReInstallService(string serviceDisplayName, string serviceAssemblyPath)
         {

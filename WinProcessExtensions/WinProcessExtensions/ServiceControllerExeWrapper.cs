@@ -104,6 +104,24 @@ namespace WinProcessExtensions
                 });
         }
 
+        public Result<ExpectedResults> CheckServiceExists(string serviceName)
+        {
+            var args = $"query {serviceName}";
+            return ExecuteScAndGetResult(args)
+                .OnSuccess(result =>
+                {
+                    switch (result)
+                    {
+                        case ExpectedResults.Success:
+                        case ExpectedResults.ServiceDoesNotExist:
+                            return Result.Ok(result);
+                        default:
+                            throw new ServiceControllerWrapperException(
+                                $"Sc exe returned unexpected result:{result} on command: {args}");
+                    }
+                });
+        }
+
         public Result<ExpectedResults> UninstallServiceIfExists(string serviceName)
         {
             var args = $"stop {serviceName}";
